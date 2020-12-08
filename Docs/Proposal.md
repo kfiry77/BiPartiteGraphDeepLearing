@@ -44,10 +44,10 @@ Several milestone needed to be tested and achieved before we can prove the full 
 
 The out of the box solution GNN DGL.ai library is selected for our task. Needless to say that although we have an state of the art solution for GNN, our work can start only after an understanding which problem we are dealing in terms of Graphs theory. Since we selected a Machine learning technique, A mandatory step before executing is to present example to our Learning Machine. To do so we require to come up with a dataset that represent our problem. That data should be sampled wisely and it should be large enough for our GNN to gain good accuracy but not too large, since we want that our GNN training will be done in a reasonable time. 
 
-Understanding that the first defined milestone is a simple Graph classification problem, in which two types of graphs are presented to the GNN: a bi-partite and a non-bi-partite graphs. Generating a non-bipartite is rather easy by using a simple random function, that will be eventually create a binary matrix. a bi-partite graph is also an easy task since its adjacency matrix takes the form of 
+Understanding that the first defined milestone is a simple Graph classification problem, in which two types of graphs are presented to the GNN: a bi-partite and a non-bi-partite graphs. Generating a non-bipartite is rather easy by using a simple random function, that will be eventually create a binary matrix. a bi-partite graph is also an easy task since its adjacency matrix takes the form of:
 
 ![$$\begin{pmatrix}
-0_{r,r}&B\\B^{T}&0_{s,s} \end{pmatrix} $$](https://quicklatex.com/cache3/00/ql_787f3b782281c68baeee18c354caa500_l3.png)
+0_{r,r}&B\\B^{T}&0_{s,s} \end{pmatrix} $$](https://latex.codecogs.com/png.latex?%5Csmall%20%5Cbegin%7Bpmatrix%7D%200_%7Br%2Cr%7D%26B%5C%5CB%5E%7BT%7D%260_%7Bs%2Cs%7D%20%5Cend%7Bpmatrix%7D)
 
 
 A quadrant B matrix can be generated same as before and filling it with zeros and B' accordingly. 
