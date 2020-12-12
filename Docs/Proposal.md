@@ -1,23 +1,18 @@
 # Detecting Software Design Issues with Graph NN 
 
-
 __Subject__: Final Project proposal for master’s degree. <br>
 __Name__: Kfir Yehezkel <br>
 __ID__: 032426181 <br>
 __Email__: kfir.ye@gmail.com <br>
-__Graduation Supervisor__: Prof. Iakov Exman <br>
+__Graduation Supervisor__: Iaakov Exman <br>
 
 ## Abstract
 
 ...
 
-## Background
-
-...
-
 ## Introduction 
 
-Writing computer software is a creative activity and programmers are not bounded by any practical limitations such as the laws of physics. Programming does not require great physical skill or coordination however it requires creative mind and the ability to organize thoughts. If one can visualize a system, one can probably implement it in a computer program. Nowadays a person carrying the job title “software engineer” have a computer installed with development tools such as compiler, code editors, debuggers, version control clients, and testing framework, few them uses specials tools for UML modeling. Also true that Software engineer is familiar algorithm, object-oriented techniques, and few design patterns. while picturing a day in life of software engineer, software design is still something that is deliberately neglected. To emphasize, how many developers masters the SOLID fundamentals? and from those who does, how many of them will raise an issue in early stages that concern open/close principle or lack of abstraction. Even  when does and presented to senior management, it is considered only as a tech debt that will be dealt only if all other revenue related goal will be achieved. A typical Software team performance indicators are usual external software quality (e.g. Bugs count) and velocity, none of them deals with Design quality.
+Writing computer software is a creative activity and programmers are not bounded by any practical limitations such as the laws of physics. Programming does not require great physical skill or coordination however it requires creative mind and the ability to organize thoughts. If one can visualize a system, one can probably implement it in a computer program. Nowadays a person carrying the job title “software engineer” have a computer installed with development tools such as compiler, code editors, debuggers, version control clients, and testing framework, fee of the engineers  uses specials tools for design such as UML modeling Software. It's Also true that Software engineer is familiar with algorithm, object-oriented techniques, and some design patterns. while picturing a day in life of software engineer, software design is still something that is deliberately neglected. To emphasize, how many developers masters the SOLID fundamentals? and from those who does, how many of them will raise an issue in early development stage that concerns open/close principle or lack of abstraction. Even when does and presented to senior management, it is considered only as a tech debt that will be dealt only if all other revenue related goal will be achieved. A typical Software team performance indicators are usual external software quality (e.g. Bugs count) and velocity, none of them deals with Design quality.
 
 ## The Problem
 
@@ -29,7 +24,7 @@ Many books of software engineering discipline were written throughout the years,
 ## The Method
 
 Deep Learning techniques have been evolved remarkably Recently. In the last years we are witnessing that deep learning techniques outperform the traditional hand-crafted designed algorithm for image recognition, machine translation, game playing and more. The method proposed here suggest harnessing deep learning techniques for software design assessment process. Clearly before we can assess the design a way to model it will be required as a preliminary process. Following the novel works of Exman, a software design can be represent by a simple algebraic notation of modularity matrix.
-The modularity metrics is practically a graph adjutancy matrix. Using the intuition of viewing the matrix as a monochrome picture, the famous CNN which dominates the literature of image classification and segmentation tasks is the  straight forward way to give insight. In short, the idea of convolution on an image is to sum the neighboring pixels around a center pixel. Although the adjacency matrix is a two-dimensional array which intuitively can be view as an image, we cannot argue that it is an image. The quick proof would be to take an adjutancy matrix and apply column or row swap, the result adjutancy matrix is equal, that represent the same graph. Images with swapped rows or columns definitely are not equal and thus a CNN for assessing design would be inappropriate .<br> 
+The modularity metrics is practically a graph adjutancy matrix. Using the intuition of viewing the matrix as a monochrome picture, the famous CNN which dominates the literature of image classification and segmentation tasks is the  straight forward way to give insights. In short, the idea of convolution on an image is to sum the neighboring pixels around a center pixel. Although the adjacency matrix is a two-dimensional array which intuitively can be view as an image, we cannot argue that it is an image. The quick proof would be to take an adjutancy matrix and apply columns or rows swap, the result is an adjutancy matrix that represent an equal graph. Images with swapped rows or columns definitely are not equal and thus a CNN for assessing design would be inappropriate .<br> 
 
 CNN adopts the idea by aggregate the features of neighboring nodes into the center node. Graph Neural Network (GNN)  adopts the same idea by aggregate the features of neighboring nodes into the center node. This type of GNN has a very strong mathematics foundation of signal processing spectral analysis. 
 
@@ -38,25 +33,29 @@ Assuming a design can be represented as a Graph, and with a given set of technic
 ## Preliminary testing
 
 Several milestone needed to be tested and achieved before we can prove the full scale GNN technique that indicate a module outlier. 
-1. Check whether the GNN identifies a bi-partite Graph. 
-1. Modifying an almost bi-partite graph into a bi-partite graph removing some edges
+1. Given a Graph determine whether it is bi-partite Graph. 
+1. Given an approximate bipartite graph, delete minimal number of edges, such that the result graph will be bipartite. 
+1. Given a graph, delete minimal edges, so the output graph will contain some isolated sub-graphs. (modules)
 1. Given a bi-partite that represent a software design, remove edges from it such that the new bi-partite graph represents a better modular design.
 
 The out of the box solution GNN DGL.ai library is selected for our task. Needless to say that although we have an state of the art solution for GNN, our work can start only after an understanding which problem we are dealing in terms of Graphs theory. Since we selected a Machine learning technique, A mandatory step before executing is to present example to our Learning Machine. To do so we require to come up with a dataset that represent our problem. That data should be sampled wisely and it should be large enough for our GNN to gain good accuracy but not too large, since we want that our GNN training will be done in a reasonable time. 
 
 Understanding that the first defined milestone is a simple Graph classification problem, in which two types of graphs are presented to the GNN: a bi-partite and a non-bi-partite graphs. Generating a non-bipartite is rather easy by using a simple random function, that will be eventually create a binary matrix. a bi-partite graph is also an easy task since its adjacency matrix takes the form of:
+$$\begin{pmatrix}0_{r,r}&B\\B^{T}&0_{s,s} \end{pmatrix} $$
 
-![$$\begin{pmatrix}
+[//]: <> (<img align="center" src="https://latex.codecogs.com/png.latex?%5Csmall%20%5Cbegin%7Bpmatrix%7D%200_%7Br%2Cr%7D%26B%5C%5CB%5E%7BT%7D%260_%7Bs%2Cs%7D%20%5Cend%7Bpmatrix%7D">)
+
+[//]: <> (![$$\begin{pmatrix}
 0_{r,r}&B\\B^{T}&0_{s,s} \end{pmatrix} $$](https://latex.codecogs.com/png.latex?%5Csmall%20%5Cbegin%7Bpmatrix%7D%200_%7Br%2Cr%7D%26B%5C%5CB%5E%7BT%7D%260_%7Bs%2Cs%7D%20%5Cend%7Bpmatrix%7D)
 
 
-A quadrant B matrix can be generated same as before and filling it with zeros and B' accordingly. 
+The $A$ quadrant $B$ matrix can be generated same as before and filling it with zeros and $B^T$ accordingly. 
 
 from the method above a dataset were created for training and validating purposes. The training process code were taken from the examples provided with DGL.AI library in which a graph classification were demonstrated. the process includes taking a batch in each training epoch, and that propagate it into the GNN, calculate the loss and back propagate in order to train the GNN parameters. 
 
 ## Preliminary Results
 
-The following graph depict loss drop during the training process, it can be seen that it took 80 epoch of in order to gain a convergence. 
+The following graph depict loss drop during the training process, it can be seen that it took 80 epochs of in order to gain a convergence. 
 
 ![](Results.png)
 
@@ -71,7 +70,5 @@ Accuracy of predication on the validation set: 78%
 1.	John Guttag & Barbara Liskov [John Guttag] - Program Development in Java_ Abstraction, Specification, and Object-Oriented Design-Addison-Wesley Professional (2000)
 1.	J. K. Blundell, M.L. Hines and J. Stach - The measurement of software design quality: Annals of Software Engineering 4 (1997)
 1.	Hans van Vilet, Software Engineering: Principles and Practice, chapter 12 Wiley(2007)
-
 1. Z. Wu, S. Pan, F. Chen, G. Long, C. Zhang, P.S. Yu, A Comprehensive Survey on Graph Neural Networks, https://arxiv.org/abs/1901.00596 (2019)
-
 1. M. Li, M. Wang, Z. Zhang.  Graph Classification Tutorial, https://docs.dgl.ai/en/0.4.x/tutorials/basics/4_batch.html
